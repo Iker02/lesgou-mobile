@@ -1,0 +1,98 @@
+@use 'variables' as *;
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap');
+
+// ===========================
+// Reset & Base
+// ===========================
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  background-color: $color-bg;
+  color: $color-white;
+  font-family: $font-body;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+// Mobile-first — cap width like a real mobile app
+app-root {
+  display: block;
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+// ===========================
+// Utility classes
+// ===========================
+.text-red    { color: $color-red; }
+.text-muted  { color: $color-gray-1; }
+.text-white  { color: $color-white; }
+.font-display { font-family: $font-display; }
+
+.btn-reset {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap');
+
+// ===========================
+// Reset & Base
+// ===========================
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  background-color: $color-bg;
+  color: $color-white;
+  font-family: $font-body;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+// Mobile-first — cap width like a real mobile app
+app-root {
+  display: block;
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+// ===========================
+// Utility classes
+// ===========================
+.text-red    { color: $color-red; }
+.text-muted  { color: $color-gray-1; }
+.text-white  { color: $color-white; }
+.font-display { font-family: $font-display; }
+
+.btn-reset {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}

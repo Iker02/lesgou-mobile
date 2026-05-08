@@ -1,0 +1,41 @@
+// ===========================
+// LESGOU — Design Tokens
+// ===========================
+
+// Colors
+$color-bg:          #0D0D0D;
+$color-surface:     #1A1A1A;
+$color-surface-2:   #242424;
+$color-border:      #2A2A2A;
+$color-red:         #FF1F1F;
+$color-red-soft:    #FF6B6B;
+$color-red-glow:    rgba(255, 31, 31, 0.2);
+$color-red-glow-sm: rgba(255, 31, 31, 0.08);
+$color-white:       #FFFFFF;
+$color-gray-1:      #888888;
+$color-gray-2:      #666666;
+$color-gray-3:      #444444;
+$color-gray-4:      #333333;
+
+// Typography
+$font-display:  'Bebas Neue', 'Impact', sans-serif;
+$font-body:     'DM Sans', sans-serif;
+
+// Spacing
+$spacing-xs:  4px;
+$spacing-sm:  8px;
+$spacing-md:  16px;
+$spacing-lg:  24px;
+$spacing-xl:  32px;
+$spacing-2xl: 48px;
+
+// Radius
+$radius-sm:   8px;
+$radius-md:   16px;
+$radius-lg:   24px;
+$radius-full: 9999px;
+
+// Transitions
+$transition-fast:   0.15s ease;
+$transition-normal: 0.25s ease;
+$transition-slow:   0.4s ease;

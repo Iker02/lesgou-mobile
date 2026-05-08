@@ -1,0 +1,120 @@
+@use '../../../../styles/variables' as *;
+
+.template-list-screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 60px $spacing-lg $spacing-2xl;
+  position: relative;
+  overflow: hidden;
+  gap: $spacing-lg;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  &--1 { width: 280px; height: 280px; background: $color-red; opacity: 0.2; top: -80px; left: -60px; }
+  &--2 { width: 220px; height: 220px; background: $color-red-soft; opacity: 0.15; bottom: 100px; right: -60px; }
+}
+
+.screen-header {
+  z-index: 1;
+  animation: fadeSlideDown 0.5s ease both;
+
+  &__title {
+    font-family: $font-display;
+    font-size: 48px;
+    color: $color-white;
+    letter-spacing: 3px;
+    line-height: 1;
+  }
+
+  &__sub {
+    font-size: 13px;
+    color: $color-gray-1;
+    margin-top: $spacing-xs;
+  }
+}
+
+.templates {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  z-index: 1;
+}
+
+.template-card {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  padding: $spacing-md;
+  cursor: pointer;
+  transition: border-color $transition-fast, transform $transition-fast;
+  animation: fadeSlideUp 0.5s ease both;
+
+  @for $i from 1 through 6 {
+    &:nth-child(#{$i}) { animation-delay: #{$i * 0.06}s; }
+  }
+
+  &:active { transform: scale(0.98); }
+
+  &:hover { border-color: rgba(255, 31, 31, 0.4); }
+
+  &--add {
+    border-style: dashed;
+    opacity: 0.5;
+    &:hover { opacity: 0.8; border-color: $color-border; }
+  }
+
+  &__emoji {
+    width: 44px;
+    height: 44px;
+    background: $color-surface-2;
+    border-radius: $radius-sm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    flex: 1;
+  }
+
+  &__name {
+    font-family: $font-body;
+    font-size: 14px;
+    font-weight: 700;
+    color: $color-white;
+  }
+
+  &__meta {
+    font-size: 12px;
+    color: $color-gray-2;
+  }
+
+  &__arrow {
+    color: $color-gray-3;
+    font-size: 18px;
+  }
+}
+
+@keyframes fadeSlideDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

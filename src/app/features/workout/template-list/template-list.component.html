@@ -1,0 +1,38 @@
+<div class="template-list-screen">
+  <div class="blob blob--1"></div>
+  <div class="blob blob--2"></div>
+
+  <header class="screen-header">
+    <h1 class="screen-header__title">ENTRENAMIENTOS</h1>
+    <p class="screen-header__sub">Elige una plantilla para empezar</p>
+  </header>
+
+  <div class="templates">
+    @for (template of workoutService.templates(); track template.id) {
+      <div class="template-card" (click)="selectTemplate(template)">
+        <div class="template-card__emoji">{{ template.emoji }}</div>
+        <div class="template-card__info">
+          <span class="template-card__name">{{ template.name }}</span>
+          <span class="template-card__meta">
+            {{ template.exercises.length }} ejercicios · ~{{
+              template.estimatedMinutes
+            }}
+            min
+          </span>
+        </div>
+        <i
+          class="ti ti-chevron-right template-card__arrow"
+          aria-hidden="true"
+        ></i>
+      </div>
+    }
+
+    <div class="template-card template-card--add">
+      <div class="template-card__emoji">➕</div>
+      <div class="template-card__info">
+        <span class="template-card__name">Nueva plantilla</span>
+        <span class="template-card__meta">Crea tu propio entreno</span>
+      </div>
+    </div>
+  </div>
+</div>

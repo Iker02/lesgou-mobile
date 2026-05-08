@@ -1,0 +1,58 @@
+<div class="detail-screen">
+  <div class="blob blob--1"></div>
+  <div class="blob blob--2"></div>
+
+  @if (template(); as t) {
+    <header class="detail-header">
+      <button class="btn-back" (click)="goBack()" aria-label="Volver">
+        <i class="ti ti-arrow-left" aria-hidden="true"></i>
+      </button>
+      <div class="detail-header__info">
+        <div class="detail-header__emoji">{{ t.emoji }}</div>
+        <div>
+          <h1 class="detail-header__title">{{ t.name.toUpperCase() }}</h1>
+          <p class="detail-header__meta">
+            {{ t.exercises.length }} ejercicios · ~{{ t.estimatedMinutes }} min
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <div class="exercise-list">
+      @for (item of t.exercises; track item.exercise.id) {
+        <div class="ex-card">
+          <div class="ex-card__gif">
+            @if (item.exercise.gifUrl) {
+              <img [src]="item.exercise.gifUrl" [alt]="item.exercise.name" />
+            } @else {
+              <i class="ti ti-player-play" aria-hidden="true"></i>
+            }
+          </div>
+          <div class="ex-card__info">
+            <span class="ex-card__name">{{ item.exercise.name }}</span>
+            <span class="ex-card__sets">
+              {{ item.sets }} sets · {{ item.reps }} reps ·
+              {{ item.restSeconds }}s descanso
+            </span>
+          </div>
+          <button
+            class="ex-card__remove btn-reset"
+            (click)="removeExercise(item)"
+            aria-label="Eliminar ejercicio"
+          >
+            <i class="ti ti-trash" aria-hidden="true"></i>
+          </button>
+        </div>
+      }
+
+      <button class="add-ex-btn btn-reset" (click)="openSearch()">
+        <i class="ti ti-plus" aria-hidden="true"></i>
+        Añadir ejercicio
+      </button>
+    </div>
+
+    <button class="start-btn btn-reset" (click)="startWorkout()">
+      LESGOU →
+    </button>
+  }
+</div>
