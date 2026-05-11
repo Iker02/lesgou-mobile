@@ -1,16 +1,13 @@
 <div class="home">
-  <!-- Background blobs -->
   <div class="home__blob home__blob--1"></div>
   <div class="home__blob home__blob--2"></div>
 
-  <!-- Header / Brand -->
   <header class="home-header">
     <span class="home-header__label">Entrena sin pensar</span>
     <h1 class="home-header__title">LESGOU</h1>
     <span class="home-header__tagline">Tu entrenador en la muñeca</span>
   </header>
 
-  <!-- Stats -->
   <section class="home-stats">
     <div class="home-stats__row">
       <div class="stat-card">
@@ -34,22 +31,22 @@
     </div>
   </section>
 
-  <!-- Main CTA -->
   <div class="home-cta">
-    <button
-      class="main-btn"
-      (click)="startWorkout()"
-      aria-label="Empezar entrenamiento"
-    >
-      <span class="main-btn__text">LESGOU</span>
-      <span class="main-btn__sub">Empezar ya</span>
-    </button>
+    <div class="btn-wrap" #btnWrap>
+      <div class="btn-ring btn-ring--1"></div>
+      <div class="btn-ring btn-ring--2"></div>
+      <div class="btn-3d" #btn3d (click)="startWorkout()">
+        <div class="btn-face" #btnFace>
+          <div class="btn-shine"></div>
+          <span class="btn-face__text">LESGOU</span>
+          <span class="btn-face__sub">Empezar ya</span>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- Bottom -->
   <div class="home-bottom">
-    <!-- Mode toggle -->
-    <div class="mode-toggle" role="group" aria-label="Modo de personalidad">
+    <div class="mode-toggle" role="group">
       <button
         class="mode-toggle__btn"
         [class.mode-toggle__btn--active]="mode() === 'normal'"
@@ -68,8 +65,7 @@
       </button>
     </div>
 
-    <!-- Nav -->
-    <nav class="bottom-nav" aria-label="Navegación principal">
+    <nav class="bottom-nav">
       @for (item of navItems; track item.icon) {
         <div class="bottom-nav__item">
           <i

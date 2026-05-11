@@ -1,8 +1,5 @@
 @use '../../../styles/variables' as *;
 
-// ===========================
-// Home Screen
-// ===========================
 .home {
   display: flex;
   flex-direction: column;
@@ -12,37 +9,36 @@
   padding: 60px $spacing-lg $spacing-2xl;
   position: relative;
   overflow: hidden;
+}
 
-  // Background blobs
-  &__blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    pointer-events: none;
-    z-index: 0;
+.home__blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  pointer-events: none;
+  z-index: 0;
 
-    &--1 {
-      width: 300px;
-      height: 300px;
-      background: $color-red;
-      opacity: 0.25;
-      top: -100px;
-      left: -80px;
-    }
+  &--1 {
+    width: 280px;
+    height: 280px;
+    background: $color-red;
+    opacity: 0.22;
+    top: -80px;
+    left: -70px;
+  }
 
-    &--2 {
-      width: 250px;
-      height: 250px;
-      background: $color-red-soft;
-      opacity: 0.2;
-      bottom: 100px;
-      right: -80px;
-    }
+  &--2 {
+    width: 220px;
+    height: 220px;
+    background: $color-red-soft;
+    opacity: 0.15;
+    bottom: 80px;
+    right: -60px;
   }
 }
 
 // ===========================
-// Top section — brand
+// Header
 // ===========================
 .home-header {
   display: flex;
@@ -53,8 +49,7 @@
   animation: fadeSlideDown 0.6s ease both;
 
   &__label {
-    font-family: $font-body;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
     letter-spacing: 4px;
     color: $color-red;
@@ -67,59 +62,58 @@
     color: $color-white;
     letter-spacing: 6px;
     line-height: 1;
-    text-align: center;
+    text-shadow: 0 4px 12px rgba(255, 31, 31, 0.3);
   }
 
   &__tagline {
-    font-size: 12px;
-    color: $color-gray-1;
+    font-size: 11px;
+    color: #555;
     letter-spacing: 1.5px;
-    margin-top: $spacing-xs;
   }
 }
 
 // ===========================
-// Stats row
+// Stats
 // ===========================
 .home-stats {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: $spacing-md;
+  gap: $spacing-sm;
   z-index: 1;
   animation: fadeSlideUp 0.6s 0.15s ease both;
 
   &__row {
     display: flex;
-    gap: $spacing-md;
+    gap: $spacing-sm;
   }
 }
 
 .stat-card {
-  background: $color-surface;
-  border: 1px solid $color-border;
+  background: #141414;
+  border: 1px solid #222;
   border-radius: $radius-md;
-  padding: 12px 20px;
+  padding: 10px 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2px;
-  transition: border-color $transition-fast;
-
-  &:hover {
-    border-color: $color-red-glow;
-  }
+  box-shadow:
+    0 4px 0 #0a0a0a,
+    0 6px 12px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
 
   &__num {
     font-family: $font-display;
-    font-size: 32px;
+    font-size: 28px;
     color: $color-red;
     line-height: 1;
+    text-shadow: 0 2px 8px rgba(255, 31, 31, 0.4);
   }
 
   &__label {
-    font-size: 10px;
-    color: $color-gray-2;
+    font-size: 9px;
+    color: #444;
     letter-spacing: 1.5px;
     text-transform: uppercase;
   }
@@ -129,22 +123,25 @@
   display: flex;
   align-items: center;
   gap: $spacing-sm;
-  background: $color-surface;
-  border: 1px solid rgba(255, 31, 31, 0.2);
+  background: #111;
+  border: 1px solid rgba(255, 31, 31, 0.15);
   border-radius: $radius-full;
-  padding: 6px 16px;
+  padding: 5px 14px;
+  box-shadow:
+    0 3px 0 #080808,
+    0 5px 10px rgba(0, 0, 0, 0.3);
 
   &__dot {
-    width: 8px;
-    height: 8px;
+    width: 7px;
+    height: 7px;
     background: $color-red;
     border-radius: 50%;
-    animation: pulse 2s infinite;
+    box-shadow: 0 0 6px $color-red;
   }
 
   &__text {
-    font-size: 12px;
-    color: $color-gray-1;
+    font-size: 11px;
+    color: #555;
 
     span {
       color: $color-red-soft;
@@ -154,72 +151,120 @@
 }
 
 // ===========================
-// Main CTA button
+// CTA 3D Button
 // ===========================
 .home-cta {
   z-index: 1;
+  perspective: 600px;
   animation: scaleIn 0.5s 0.3s ease both;
 }
 
-.main-btn {
+.btn-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  &.btn-pressed .btn-face {
+    box-shadow:
+      0 2px 0 #7a0000,
+      0 3px 0 #5a0000,
+      0 6px 16px rgba(0, 0, 0, 0.6),
+      inset 0 2px 6px rgba(255, 160, 160, 0.2),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.5);
+    transform: translateY(12px);
+  }
+}
+
+.btn-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+
+  &--1 {
+    width: 254px;
+    height: 254px;
+    border: 1px solid rgba(255, 31, 31, 0.2);
+  }
+
+  &--2 {
+    width: 284px;
+    height: 284px;
+    border: 1px solid rgba(255, 31, 31, 0.08);
+  }
+}
+
+.btn-3d {
   width: 220px;
   height: 220px;
   border-radius: 50%;
-  background: $color-red;
-  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(0deg) rotateY(0deg);
+  transition: transform 0.1s ease;
   cursor: pointer;
+  user-select: none;
+}
+
+.btn-face {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #FF4444, #CC1111 60%, #990000);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
-  -webkit-tap-highlight-color: transparent;
-  transition: transform $transition-fast, box-shadow $transition-fast;
-
-  // Ripple rings
-  &::before {
-    content: '';
-    position: absolute;
-    width: 248px;
-    height: 248px;
-    border-radius: 50%;
-    border: 1.5px solid rgba(255, 31, 31, 0.25);
-    animation: ringPulse 2.5s ease-in-out infinite;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    width: 276px;
-    height: 276px;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 31, 31, 0.1);
-    animation: ringPulse 2.5s 0.4s ease-in-out infinite;
-  }
-
-  &:active {
-    transform: scale(0.95);
-  }
+  position: absolute;
+  box-shadow:
+    0 8px 0 #7a0000,
+    0 12px 0 #5a0000,
+    0 16px 0 #3a0000,
+    0 22px 35px rgba(0, 0, 0, 0.7),
+    inset 0 2px 6px rgba(255, 160, 160, 0.3),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.4);
+  transition: box-shadow 0.08s ease, transform 0.08s ease;
 
   &__text {
     font-family: $font-display;
-    font-size: 56px;
-    color: $color-white;
+    font-size: 50px;
+    color: #fff;
     letter-spacing: 4px;
     line-height: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 -1px 0 rgba(255, 255, 255, 0.15);
+    pointer-events: none;
+    z-index: 1;
   }
 
   &__sub {
-    font-size: 11px;
+    font-size: 10px;
     color: rgba(255, 255, 255, 0.6);
-    letter-spacing: 2.5px;
+    letter-spacing: 3px;
     text-transform: uppercase;
     margin-top: 4px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    z-index: 1;
   }
 }
 
+.btn-shine {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  top: 0;
+  border-radius: 110px 110px 0 0;
+  background: radial-gradient(ellipse at 40% 30%, rgba(255, 255, 255, 0.22), transparent 70%);
+  pointer-events: none;
+}
+
 // ===========================
-// Bottom section
+// Bottom
 // ===========================
 .home-bottom {
   display: flex;
@@ -231,43 +276,41 @@
   animation: fadeSlideUp 0.6s 0.45s ease both;
 }
 
-// Mode toggle
 .mode-toggle {
   display: flex;
-  background: $color-surface;
+  background: #111;
   border-radius: $radius-full;
-  padding: 4px;
-  border: 1px solid $color-border;
+  padding: 3px;
+  border: 1px solid #1e1e1e;
+  box-shadow:
+    0 4px 0 #080808,
+    0 6px 12px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
 
   &__btn {
     font-family: $font-body;
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 11px;
+    font-weight: 700;
     letter-spacing: 0.5px;
-    padding: 7px 20px;
+    padding: 6px 18px;
     border-radius: $radius-full;
     border: none;
     cursor: pointer;
-    transition: background $transition-fast, color $transition-fast;
     -webkit-tap-highlight-color: transparent;
 
     &--active {
       background: $color-red;
       color: $color-white;
+      box-shadow: 0 2px 0 #990000, 0 3px 6px rgba(255, 31, 31, 0.3);
     }
 
     &--inactive {
       background: transparent;
-      color: $color-gray-2;
-
-      &:hover {
-        color: $color-gray-1;
-      }
+      color: #444;
     }
   }
 }
 
-// Bottom nav
 .bottom-nav {
   display: flex;
   justify-content: space-around;
@@ -280,24 +323,20 @@
     align-items: center;
     gap: 5px;
     cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
   }
 
   &__icon {
-    font-size: 22px;
-    transition: color $transition-fast;
-
+    font-size: 20px;
     &--active  { color: $color-red; }
-    &--inactive { color: $color-gray-3; }
+    &--inactive { color: #333; }
   }
 
   &__dot {
     width: 5px;
     height: 5px;
     border-radius: 50%;
-
     &--active   { background: $color-red; }
-    &--inactive { background: $color-gray-4; }
+    &--inactive { background: #222; }
   }
 }
 
@@ -317,14 +356,4 @@
 @keyframes scaleIn {
   from { opacity: 0; transform: scale(0.8); }
   to   { opacity: 1; transform: scale(1); }
-}
-
-@keyframes ringPulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50%       { opacity: 0.4; transform: scale(1.04); }
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.4; }
 }
