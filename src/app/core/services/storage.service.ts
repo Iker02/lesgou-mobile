@@ -1,23 +1,47 @@
 import { Injectable } from '@angular/core';
-import { Preferences } from '@capacitor/preferences';
 
 @Injectable({ providedIn: 'root' })
 export class StorageService {
+  private isCapacitor(): boolean {
+    return (
+      typeof window !== 'undefined' &&
+      !!(window as any).Capacitor?.isNativePlatform?.()
+    );
+  }
+
   async set(key: string, value: unknown): Promise<void> {
-    await Preferences.set({ key, value: JSON.stringify(value) });
+    const data = JSON.stringify(value);
+    if (this.isCapacitor()) {
+      const { Preferences } = await import('@capacitor/preferences');
+      await Preferences.set({ key, value: data });
+    } else {
+      localStorage.setItem(key, data);
+    }
   }
 
   async get<T>(key: string): Promise<T | null> {
-    const { value } = await Preferences.get({ key });
-    if (!value) return null;
     try {
-      return JSON.parse(value) as T;
+      if (this.isCapacitor()) {
+        const { Preferences } = await import('@capacitor/preferences');
+        const { value } = await Preferences.get({ key });
+        if (!value) return null;
+        return JSON.parse(value) as T;
+      } else {
+        const value = localStorage.getItem(key);
+        if (!value) return null;
+        return JSON.parse(value) as T;
+      }
     } catch {
       return null;
     }
   }
 
   async remove(key: string): Promise<void> {
-    await Preferences.remove({ key });
+    if (this.isCapacitor()) {
+      const { Preferences } = await import('@capacitor/preferences');
+      await Preferences.remove({ key });
+    } else {
+      localStorage.removeItem(key);
+    }
   }
 }
