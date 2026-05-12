@@ -93,10 +93,13 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       btn.style.transform = 'rotateX(8deg) rotateY(0deg) scale(0.97)';
     };
 
-    const onTouchEnd = () => {
+    const onTouchEnd = (e: TouchEvent) => {
+      e.preventDefault();
       this.pressed = false;
       wrap.classList.remove('btn-pressed');
       btn.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+      // Navegación manual en touch
+      this.zone.run(() => this.startWorkout());
     };
 
     wrap.addEventListener('mousemove', onMouseMove as EventListener);
